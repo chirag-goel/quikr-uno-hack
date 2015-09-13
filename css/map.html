@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geocoding service</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    .login{
+      display: none;
+    }
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input id="submit" type="button" value="Geocode">
+    </div>
+    <div id="map"></div>
+    <script>
+function initMap() {
+  var myLatLng = {lat: -25.363, lng: 131.044};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    draggable: true,
+    title: 'Hello World!'
+  });
+  google.maps.event.addListener(marker, 'dragend', function(event){
+  $latitude=event.latLng.lat().toFixed(3);
+  $longitude=event.latLng.lng().toFixed(3);
+  console.log($latitude);
+  console.log($longitude);
+    //document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + event.latLng.lat().toFixed(3) + ' Current Lng: ' + event.latLng.lng().toFixed(3) + '</p>';
+});
+}
+
+
+ 
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP8xMFK1CAvtpwjb2elql3TE4UZ7husbs&signed_in=true&callback=initMap"
+        async defer></script>
+  </body>
+</html>
+
+<!-- 
+897324750224-cbkceqinkgkgnrgsv34pmjtht6b0p3ea.apps.googleusercontent.com
+Here is your client secret
+o7BYZc-I1vNLhtkARZVj3QVq -->
+
